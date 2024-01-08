@@ -1,0 +1,22 @@
+{
+  "name": "ezhire",
+  "version": "1.0.0",
+  "description": "Find your dream job with Ezhire! Explore a wide range of job opportunities, connect with employers, and take the next step in your career. Features include personalized job recommendations, easy application tracking, and seamless communication with recruiters. Start your job search journey today!",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "nodemailer": "^6.9.7"
+  }
+}

@@ -12,3 +12,9 @@ web-build/
 
 # macOS
 .DS_Store
+
+# Exclude client folder
+client/
+
+# Exclude server .env file
+.env
