@@ -52,7 +52,7 @@ const login = async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '30d' });
 
         res.status(200).json({ token : token , userData: user});
     } catch (error) {
@@ -161,7 +161,7 @@ const authenticateToken = (req, res, next) => {
 const getUserData = async (req, res) => {
     try {
         const userData = await User.findById(req.user.userId);
-        res.status(200).json(userData);
+        res.status(200).json({ userData: userData});
     } catch (error) {
         console.error('Error retrieving user data:', error);
         res.status(500).json({ message: 'Internal Server Error' });
