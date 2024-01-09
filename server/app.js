@@ -8,7 +8,8 @@ const axios = require('axios');
 require('dotenv').config(); // Load environment variables
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 
 // Middleware
 app.use(bodyParser.json());
-
+app.use(express.json());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
@@ -101,8 +102,9 @@ app.get('/job-details', async (req, res) => {
     };
 
     const response = await axios(options);
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error.response.data);
   }
 });
