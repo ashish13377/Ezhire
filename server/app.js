@@ -27,7 +27,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/wishlist', wishlistRoutes);
 
-app.get('/jobsearch', async (req, res) => {
+app.get('/search', async (req, res) => {
   try {
     const {
       query,
@@ -36,6 +36,7 @@ app.get('/jobsearch', async (req, res) => {
       country,
       num_pages,
       date_posted,
+      job_id,
     } = req.query;
 
     const queryParams = {
@@ -45,6 +46,7 @@ app.get('/jobsearch', async (req, res) => {
       ...(country && { country }),
       ...(num_pages && { num_pages }),
       ...(date_posted && { date_posted }),
+      ...(job_id && { job_id })
     };
 
     const options = {
@@ -74,6 +76,7 @@ app.get('/job-details', async (req, res) => {
       country,
       num_pages,
       date_posted,
+      job_id,
     } = req.query;
 
     const queryParams = {
@@ -83,6 +86,8 @@ app.get('/job-details', async (req, res) => {
       ...(country && { country }),
       ...(num_pages && { num_pages }),
       ...(date_posted && { date_posted }),
+      ...(job_id && { job_id })
+
     };
 
     const options = {
