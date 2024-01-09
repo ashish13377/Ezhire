@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  profilePicture: { type: String },
+  profileimage: { type: String, default: "https://cdn.dribbble.com/users/1104126/screenshots/6737246/team.gif" },
   firstName: { type: String, require: true },
   lastName: { type: String, require: true },
   email: { type: String, unique: true, required: true },
