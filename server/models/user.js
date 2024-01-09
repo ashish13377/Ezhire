@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   phone: { type: String },
   dateOfbirth: { type: String },
   gender: { type: String },
-  verify: { type: Boolean, default: false },
   verificationOTP: { type: String },
   verificationOTPExpiry: { type: Date },
 });

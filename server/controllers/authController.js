@@ -21,7 +21,7 @@ const signup = async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
+    
         // Create a new user
         const newUser = new User({ email, password: hashedPassword, phone, firstName, lastName });
         await newUser.save();
@@ -39,6 +39,8 @@ const login = async (req, res) => {
 
         // Find the user by email
         const user = await User.findOne({ email });
+       
+
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
@@ -50,14 +52,16 @@ const login = async (req, res) => {
         }
 
         // Generate a JWT token
-        const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-        res.status(200).json({ token });
+        res.status(200).json({ token : token , userData: user});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+
 
 const forgotPassword = async (req, res) => {
     try {
@@ -136,9 +140,40 @@ const resetPassword = async (req, res) => {
     }
 };
 
+
+const authenticateToken = (req, res, next) => {
+    const token = req.body.token;
+
+    if (!token) {
+        return res.status(401).json({ message: 'Token is required' });
+    }
+
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+        if (err) {
+            return res.status(403).json({ message: 'Invalid token' });
+        }
+
+        req.user = user;
+        next();
+    });
+};
+
+const getUserData = async (req, res) => {
+    try {
+        const userData = await User.findById(req.user.userId);
+        res.status(200).json(userData);
+    } catch (error) {
+        console.error('Error retrieving user data:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
 module.exports = {
     signup,
     login,
     forgotPassword,
     resetPassword,
+    authenticateToken,
+    getUserData
 };
