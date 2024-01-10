@@ -13,7 +13,7 @@ const getUserProfile = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   try {
-    const { userId } = req;
+    const { userId } = req.query;
     const updateFields = req.body;
 
     // Check if the user exists
