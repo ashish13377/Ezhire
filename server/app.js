@@ -112,11 +112,19 @@ app.get('/job-details', async (req, res) => {
   }
 });
 
+// // Configure Cloudinary
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API_KEY,
+//   api_secret: process.env.CLOUD_API_SECRET,
+// });
+
 // Configure Cloudinary
-cloudinary.config({
+cloudinary.v2.config({
   cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
+  api_key: process.env.CLOUD_API_KEY, 
   api_secret: process.env.CLOUD_API_SECRET,
+  secure: true,
 });
 
 // Configure Multer to use Cloudinary as storage
@@ -134,6 +142,7 @@ const upload = multer({ storage: storage });
 app.post('/upload', upload.single('file'), (req, res) => {
   // Access the Cloudinary URL of the uploaded file
   const imageUrl = req.file.path;
+
   res.json({ imageUrl });
 });
 
