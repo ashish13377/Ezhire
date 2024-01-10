@@ -119,32 +119,32 @@ app.get('/job-details', async (req, res) => {
 //   api_secret: process.env.CLOUD_API_SECRET,
 // });
 
-// Configure Cloudinary
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY, 
-  api_secret: process.env.CLOUD_API_SECRET,
-  secure: true,
-});
+// // Configure Cloudinary
+// cloudinary.v2.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API_KEY, 
+//   api_secret: process.env.CLOUD_API_SECRET,
+//   secure: true,
+// });
 
-// Configure Multer to use Cloudinary as storage
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'uploads',
-    allowed_formats: ['jpg', 'png', 'jpeg'],
-  },
-});
+// // Configure Multer to use Cloudinary as storage
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: {
+//     folder: 'uploads',
+//     allowed_formats: ['jpg', 'png', 'jpeg'],
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
-// Define the upload route
-app.post('/upload', upload.single('file'), (req, res) => {
-  // Access the Cloudinary URL of the uploaded file
-  const imageUrl = req.file.path;
+// // Define the upload route
+// app.post('/upload', upload.single('file'), (req, res) => {
+//   // Access the Cloudinary URL of the uploaded file
+//   const imageUrl = req.file.path;
 
-  res.json({ imageUrl });
-});
+//   res.json({ imageUrl });
+// });
 
 // Start the server
 app.listen(PORT, () => {

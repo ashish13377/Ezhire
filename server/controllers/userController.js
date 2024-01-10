@@ -13,10 +13,17 @@ const getUserProfile = async (req, res) => {
 
 const updateUserProfile = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { userId } = req;
+    const updateFields = req.body;
+
+    // Check if the user exists
+    const existingUser = await User.findById(userId);
+    if (!existingUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
     // Update user profile details in the database
-    await User.findByIdAndUpdate(req.userId, { email });
+    await User.findByIdAndUpdate(userId, updateFields);
 
     res.status(200).json({ message: 'User profile updated successfully' });
   } catch (error) {
@@ -24,6 +31,7 @@ const updateUserProfile = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
 
 const deleteUser = async (req, res) => {
   try {
