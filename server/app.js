@@ -5,11 +5,14 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const wishlistRoutes = require('./routes/wishlistRoutes');
 const axios = require('axios');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 require('dotenv').config(); // Load environment variables
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -107,6 +110,31 @@ app.get('/job-details', async (req, res) => {
     console.log(error);
     res.status(500).json(error.response.data);
   }
+});
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
+
+// Configure Multer to use Cloudinary as storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'uploads',
+    allowed_formats: ['jpg', 'png', 'jpeg'],
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Define the upload route
+app.post('/upload', upload.single('file'), (req, res) => {
+  // Access the Cloudinary URL of the uploaded file
+  const imageUrl = req.file.path;
+  res.json({ imageUrl });
 });
 
 // Start the server
