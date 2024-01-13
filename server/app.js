@@ -112,6 +112,10 @@ app.get('/job-details', async (req, res) => {
   }
 });
 
+app.get('/', async (req, res) =>{
+  res.status(200).json({massage : "Hello from this side !!!!"})
+})
+
 // // Configure Cloudinary
 // cloudinary.config({
 //   cloud_name: process.env.CLOUD_NAME,
