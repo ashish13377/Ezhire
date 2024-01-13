@@ -2,8 +2,19 @@ const express = require('express');
 const router = express.Router();
 const { wishlistController } = require('../controllers');
 
-router.get('/wishlist', wishlistController.getWishlist);
-router.post('/wishlist/add', wishlistController.addToWishlist);
-router.delete('/wishlist/remove/:id', wishlistController.removeFromWishlist);
+// API to add an item to the wishlist
+router.post('/add', wishlistController.addToWishlist);
+
+// API to update an item in the wishlist
+router.put('/update/:job_id', wishlistController.updateWishlistItem);
+
+// API to delete an item from the wishlist
+router.delete('/delete/:job_id', wishlistController.deleteFromWishlist);
+
+// API to check if a job_id exists in the wishlist
+router.get('/check', wishlistController.checkJobIdInWishlist);
+
+// API to get all wishlist items for a specific user
+router.get('/all/:userId', wishlistController.getAllWishlistItems);
 
 module.exports = router;
