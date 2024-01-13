@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Ezhire",
+    "slug": "ezhire",
+    "scheme": "acme",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#DD7B29"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "CFBundleDisplayName": "Ezhire",
+        "CFBundleIdentifier": "com.acme.ezhire",
+        "UILaunchStoryboardName": "LaunchScreen"
+      },
+      "bundleIdentifier": "com.acme.ezhire",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.acme.ezhire",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "description": "Find your dream job with Ezhire! Explore a wide range of job opportunities, connect with employers, and take the next step in your career. Features include personalized job recommendations, easy application tracking, and seamless communication with recruiters. Start your job search journey today!",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d916379d-de84-492e-a1be-8feb8ca9c838"
+      }
+    },
+    "owner": "bytesclient"
+  }
+}

@@ -14,7 +14,7 @@ web-build/
 .DS_Store
 
 # Exclude client folder
-client/
+# client/
 
 # Exclude server .env file
 .env
