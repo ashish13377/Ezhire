@@ -6,7 +6,7 @@ const wishlistSchema = new mongoose.Schema({
   employer_logo: { type: String, required: true },
   job_title : { type: String, required: true },
   job_employment_type : { type: String, required: true },
-  data: [{ type: Object, required: true }],
+  data: { type: Object, required: true },
 });
 
 const Wishlist = mongoose.model('Wishlist', wishlistSchema);
