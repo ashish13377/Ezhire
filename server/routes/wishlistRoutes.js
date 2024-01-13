@@ -9,7 +9,7 @@ router.post('/add', wishlistController.addToWishlist);
 router.put('/update/:job_id', wishlistController.updateWishlistItem);
 
 // API to delete an item from the wishlist
-router.delete('/delete/:job_id', wishlistController.deleteFromWishlist);
+router.delete('/delete', wishlistController.deleteFromWishlist);
 
 // API to check if a job_id exists in the wishlist
 router.get('/check', wishlistController.checkJobIdInWishlist);

@@ -15,7 +15,7 @@ const addToWishlist = async (req, res) => {
     });
 
     await wishlistItem.save();
-    res.status(201).json({ success: true, message: 'Item added to wishlist successfully' });
+    res.status(200).json({ success: true, message: 'Item added to wishlist successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -44,14 +44,14 @@ const updateWishlistItem = async (req, res) => {
 // Controller to delete an item from the wishlist
 const deleteFromWishlist = async (req, res) => {
   try {
-    const { job_id } = req.params;
+    const { job_id } = req.query;
 
     const result = await Wishlist.deleteOne({ job_id });
 
     if (result.deletedCount > 0) {
-      res.json({ success: true, message: 'Item deleted successfully' });
+      res.status(200).json({ success: true, message: 'Item deleted successfully' });
     } else {
-      res.json({ success: false, message: 'Item not found or not deleted' });
+      res.status(201).json({ success: false, message: 'Item not found or not deleted' });
     }
   } catch (error) {
     console.error(error);
