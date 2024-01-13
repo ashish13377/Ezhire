@@ -51,7 +51,7 @@ const deleteFromWishlist = async (req, res) => {
     if (result.deletedCount > 0) {
       res.status(200).json({ success: true, message: 'Item deleted successfully' });
     } else {
-      res.status(201).json({ success: false, message: 'Item not found or not deleted' });
+      res.status(200).json({ success: false, message: 'Item not found or not deleted' });
     }
   } catch (error) {
     console.error(error);

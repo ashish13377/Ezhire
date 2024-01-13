@@ -10,6 +10,8 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 require('dotenv').config(); // Load environment variables
 
+const Wishlist = require('./models/wishlist');
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -94,6 +96,8 @@ app.get('/job-details', async (req, res) => {
 
     };
 
+    const item = await Wishlist.findOne({ job_id });
+
     const options = {
       method: 'GET',
       url: 'https://jsearch.p.rapidapi.com/job-details',
@@ -105,15 +109,20 @@ app.get('/job-details', async (req, res) => {
     };
 
     const response = await axios(options);
-    res.json(response.data);
+
+    if (item) {
+      res.json({ data: response.data, exists: true });
+    } else {
+      res.json({ data: response.data, exists: false });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json(error.response.data);
   }
 });
 
-app.get('/', async (req, res) =>{
-  res.status(200).json({massage : "Hello from this side !!!!"})
+app.get('/', async (req, res) => {
+  res.status(200).json({ massage: "Hello from this side !!!!" })
 })
 
 // // Configure Cloudinary
