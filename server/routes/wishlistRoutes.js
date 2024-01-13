@@ -15,6 +15,6 @@ router.delete('/delete', wishlistController.deleteFromWishlist);
 router.get('/check', wishlistController.checkJobIdInWishlist);
 
 // API to get all wishlist items for a specific user
-router.get('/all/:userId', wishlistController.getAllWishlistItems);
+router.get('/all', wishlistController.getAllWishlistItems);
 
 module.exports = router;

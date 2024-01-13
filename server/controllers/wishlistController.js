@@ -80,7 +80,7 @@ const checkJobIdInWishlist = async (req, res) => {
 // Controller to get all wishlist items for a specific user
 const getAllWishlistItems = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.query;
     const wishlistItems = await Wishlist.find({ userId });
     
     res.json({ wishlistItems });
