@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { wishlistController } = require('../controllers');
 
-// API to add an item to the wishlist
+// API to add an item to the wishlist new update
 router.post('/add', wishlistController.addToWishlist);
 
 // API to update an item in the wishlist
