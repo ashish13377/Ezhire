@@ -1,7 +1,7 @@
 {
   "name": "ezhire",
   "version": "1.0.1",
-  "description": "Find your dream job mera with Ezhire! Explore a wide range of job opportunities, connect with employers, and take the next step in your career. Features include personalized job recommendations, easy application tracking, and seamless communication with recruiters. Start your job search journey today!",
+  "description": "Find your dream job mera job with Ezhire! Explore a wide range of job opportunities, connect with employers, and take the next step in your career. Features include personalized job recommendations, easy application tracking, and seamless communication with recruiters. Start your job search journey today!",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
