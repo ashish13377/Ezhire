@@ -5,7 +5,7 @@ const { wishlistController } = require('../controllers');
 // API to add an item to the wishlist
 router.post('/add', wishlistController.addToWishlist);
 
-// API to update an item in the wishlist
+// API to update an item in the wishlist api here
 router.put('/update/:job_id', wishlistController.updateWishlistItem);
 
 // API to delete an item from the wishlist
