@@ -92,7 +92,7 @@ export default function Home() {
                             style={styles.btnImg("100%")}
                         /> : null}
                     </TouchableOpacity>
-                    // new update here add here new <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" handelPress={() => router.push('/profile-page')} />
+                    // new update here add here new new also <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" handelPress={() => router.push('/profile-page')} />
                 ),
                 headerRight: () => (
                     <TouchableOpacity style={styles.btnContainer} onPress={() => router.push('/setting')}>
