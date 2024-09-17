@@ -6,6 +6,7 @@ import styles from './popularjobs.style'
 import { COLORS, SIZES } from '../../../constants';
 import PopularJobCard from '../../common/cards/popular/PopularJobCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import API_ENDPOINT from '../../../utils';
 
 const LOCATION_STORAGE_KEY = '@Ezhire:locationData';
 
@@ -28,7 +29,7 @@ const Popularjobs = () => {
 
           const apiOptions = {
             method: 'GET',
-            url: 'https://ezhire.onrender.com/search',
+            url: API_ENDPOINT + 'search',
             params: {
               query: `Jobs in ${country}`,
               num_pages: '1',

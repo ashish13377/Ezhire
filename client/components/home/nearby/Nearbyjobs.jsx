@@ -6,6 +6,7 @@ import { COLORS } from '../../../constants';
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import API_ENDPOINT from '../../../utils';
 
 const LOCATION_STORAGE_KEY = '@Ezhire:locationData';
 
@@ -34,7 +35,7 @@ const NearbyJobs = () => {
 
         const apiOptions = {
           method: 'GET',
-          url: 'https://ezhire.onrender.com/search',
+          url: API_ENDPOINT + 'search',
           params: {
             query: `Jobs in ${city}, ${country}`,
             num_pages:  numPages.toString(),

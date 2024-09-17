@@ -5,3 +5,6 @@ export const checkImageURL = (url) => {
         return pattern.test(url);
     }
 };
+
+const API_ENDPOINT = "http://192.168.1.103:8080/";
+export default API_ENDPOINT;

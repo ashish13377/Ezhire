@@ -8,10 +8,11 @@ import {
     SafeAreaView,
     ActivityIndicator,
     Image,
+    StatusBar,
 } from 'react-native';
 import { COLORS, FONT, SIZES, SHADOWS, icons, images } from '../../constants'; // Adjust the path accordingly
 import { Clipboard } from 'react-native';
-import { Stack, useRouter, useSearchParams } from 'expo-router';
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { ScreenHeaderBtn } from '../../components';
 
 const OTPScreen = () => {
@@ -23,7 +24,7 @@ const OTPScreen = () => {
     const [pastedText, setPastedText] = useState('');
 
 
-    const params = useSearchParams();
+    const params = useLocalSearchParams();
     const router = useRouter();
     const email = params.email;
 
@@ -111,73 +112,84 @@ const OTPScreen = () => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Stack.Screen
-                options={{
-                    headerStyle: { backgroundColor: COLORS.lightWhite },
-                    headerShadowVisible: false,
-                    headerLeft: () => (
-                        <ScreenHeaderBtn
-                            iconUrl={icons.left}
-                            dimension='60%'
-                            handelPress={() => router.back()}
-                        />
-                    ),
-                    headerTitle: '',
-                }}
-            />
-            <View style={{ flex: 1, marginHorizontal: 22 }}>
-                <View style={{ marginVertical: 30 }}>
-                    <Image
-                        source={images.verification} // Adjust the path to your image
-                        style={styles.headerImage}
-                    />
-                    <Text
-                        style={{
-                            fontSize: 22,
-                            marginVertical: 7,
-                            color: COLORS.secondary,
-                            fontFamily: FONT.bold,
-                        }}
-                    >
-                        Account Verification
-                    </Text>
-                    <Text style={{ fontSize: 16, fontFamily: FONT.medium }}>
-                        your code has landed in your email{' '}
-                        <Text style={{ color: COLORS.tertiary }}>{email}</Text>
-                    </Text>
-                </View>
-                <View style={{ marginBottom: 50, marginTop: 25 }}>
-                    <View style={styles.otpContainer}>
-                        {otpInputs.map((inputRef, index) => (
-                            <TextInput
-                                key={index}
-                                style={[styles.otpInput, otp[index] && styles.filledInput]}
-                                maxLength={1}
-                                value={otp[index]}
-                                ref={inputRef}
-                                onChangeText={(value) => handleOtpChange(index, value)}
-                                onKeyPress={(event) => handleKeyPress(event, index)}
-                                onSelectionChange={handlePaste}
-                                onSubmitEditing={() => handleVerifyOtp()}
-                            />
-                        ))}
-                    </View>
-                    {error ? <Text style={styles.errorText}>{error}</Text> : null}
-                </View>
-                <TouchableOpacity
-                    style={styles.verifyButton}
-                    onPress={handleVerifyOtp}
-                >
-                    {isLoading ? (
-                        <ActivityIndicator size="small" color={COLORS.lightWhite} />
-                    ) : (
-                        <Text style={{ color: COLORS.white, fontFamily: FONT.bold, fontSize: 16 }}>Verify</Text>
-                    )}
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
-    );
+			<SafeAreaView style={styles.container}>
+				<StatusBar
+					barStyle='dark-content' // Change icon color to white
+				/>
+				<Stack.Screen
+					options={{
+						headerStyle: { backgroundColor: COLORS.lightWhite },
+						headerShadowVisible: false,
+						headerLeft: () => (
+							<ScreenHeaderBtn
+								iconUrl={icons.left}
+								dimension='60%'
+								handelPress={() => router.back()}
+							/>
+						),
+						headerTitle: "",
+					}}
+				/>
+				<View style={{ flex: 1, marginHorizontal: 22 }}>
+					<View style={{ marginVertical: 30 }}>
+						<Image
+							source={images.verification} // Adjust the path to your image
+							style={styles.headerImage}
+						/>
+						<Text
+							style={{
+								fontSize: 22,
+								marginVertical: 7,
+								color: COLORS.secondary,
+								fontFamily: FONT.bold,
+							}}>
+							Account Verification
+						</Text>
+						<Text style={{ fontSize: 16, fontFamily: FONT.medium }}>
+							your code has landed in your email{" "}
+							<Text style={{ color: COLORS.tertiary }}>{email}</Text>
+						</Text>
+					</View>
+					<View style={{ marginBottom: 50, marginTop: 25 }}>
+						<View style={styles.otpContainer}>
+							{otpInputs.map((inputRef, index) => (
+								<TextInput
+									key={index}
+									style={[styles.otpInput, otp[index] && styles.filledInput]}
+									maxLength={1}
+									value={otp[index]}
+									ref={inputRef}
+									onChangeText={(value) => handleOtpChange(index, value)}
+									onKeyPress={(event) => handleKeyPress(event, index)}
+									onSelectionChange={handlePaste}
+									onSubmitEditing={() => handleVerifyOtp()}
+								/>
+							))}
+						</View>
+						{error ? <Text style={styles.errorText}>{error}</Text> : null}
+					</View>
+					<TouchableOpacity
+						style={styles.verifyButton}
+						onPress={handleVerifyOtp}>
+						{isLoading ? (
+							<ActivityIndicator
+								size='small'
+								color={COLORS.lightWhite}
+							/>
+						) : (
+							<Text
+								style={{
+									color: COLORS.white,
+									fontFamily: FONT.bold,
+									fontSize: 16,
+								}}>
+								Verify
+							</Text>
+						)}
+					</TouchableOpacity>
+				</View>
+			</SafeAreaView>
+		);
 };
 
 const styles = StyleSheet.create({
