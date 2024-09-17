@@ -1,6 +1,6 @@
 
 <div align="center" >
-  <img src="https://res.cloudinary.com/diyncva2v/image/upload/v1726586520/xzt4itcqowjcughhchdt.png" traget="_blank" alt="Ezhire App" style="max-width: 100%; height: auto; border-radius: 15px;" />
+  <img src="https://res.cloudinary.com/diyncva2v/image/upload/v1726586520/xzt4itcqowjcughhchdt.png" target="_blank" alt="Ezhire App" style="max-width: 100%; height: auto; border-radius: 15px;" />
 </div>
 
 
